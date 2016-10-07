@@ -19,21 +19,30 @@ public class GameScreen extends ScreenAdapter {
         pacmanImg = new Texture("pacman.png");
         world = new World(pacmanGame);
         pacman = world.getPacman();
+        worldRenderer = new WorldRenderer(pacmanGame,world);
         //pacman = new Pacman(100,100);
     }
     private void update(float delta) {
-    	 if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-    		 pacman.move(Pacman.DIRECTION_LEFT);
-         }
-         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-        	 pacman.move(Pacman.DIRECTION_RIGHT);
-         }
-         if(Gdx.input.isKeyPressed(Keys.UP)) {
-        	 pacman.move(Pacman.DIRECTION_UP);
-         }
-         if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-        	 pacman.move(Pacman.DIRECTION_DOWN);
-         }
+    	 updatePacmanDirection();
+         world.update(delta);
+    }
+    private void updatePacmanDirection() {
+    	if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+   		 pacman.setNextDirection(Pacman.DIRECTION_LEFT);
+        }
+   	 else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+       	 pacman.setNextDirection(Pacman.DIRECTION_RIGHT);
+        }
+   	 else if(Gdx.input.isKeyPressed(Keys.UP)) {
+       	 pacman.setNextDirection(Pacman.DIRECTION_UP);
+        }
+   	 else if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+       	 pacman.setNextDirection(Pacman.DIRECTION_DOWN);
+        }
+        else
+        {
+       	 pacman.setNextDirection(Pacman.DIRECTION_STILL);
+        }
     }
     @Override
     public void render(float delta) {
