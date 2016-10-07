@@ -7,8 +7,8 @@ import com.mygdx.game.pacmann.Pacmannnnnn;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 800;
-		config.height = 600;
+		config.width = Pacmannnnnn.WIDTH;
+        config.height = Pacmannnnnn.HEIGHT;
 		new LwjglApplication(new Pacmannnnnn(), config);
 	}
 }
