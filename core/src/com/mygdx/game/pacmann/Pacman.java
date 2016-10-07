@@ -47,6 +47,7 @@ public class Pacman {
 	    }
 	    public void update() {
 	        if(isAtCenter()) {
+	        	eatDot();
 	        	if(canMoveInDirection(nextDirection)) {
 	                currentDirection = nextDirection;    
 	            } else {
@@ -67,5 +68,9 @@ public class Pacman {
 	 
 	        return ((((int)position.x - blockSize/2) % blockSize) == 0) &&
 	                ((((int)position.y - blockSize/2) % blockSize) == 0);
+	    }
+	    public void eatDot()
+	    {
+	    	if(maze.hasDotAt(getRow(), getColumn()))maze.removeDotAt(getRow(), getColumn());
 	    }
 }

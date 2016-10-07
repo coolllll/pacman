@@ -16,12 +16,14 @@ public class Maze {
             "#..................#",
             "####################"    
     };
+	private boolean [][] hasDots;
 	private int height;
     private int width;
  
     public Maze() {
         height = MAP.length;
         width = MAP[0].length();
+        initDotData();
     }
  
     public int getHeight() {
@@ -36,6 +38,17 @@ public class Maze {
     }
  
     public boolean hasDotAt(int r, int c) {
-        return MAP[r].charAt(c) == '.';
+        return hasDots[r][c];
+    }
+    public void removeDotAt(int r, int c) {
+        hasDots[r][c] = false;
+    }
+    private void initDotData() {
+        hasDots = new boolean[height][width];
+        for(int r = 0; r < height; r++) {
+            for(int c = 0; c < width; c++) {
+                hasDots[r][c] = MAP[r].charAt(c) == '.';
+            }
+        }
     }
 }
